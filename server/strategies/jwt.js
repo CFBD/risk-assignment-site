@@ -7,8 +7,6 @@ const cookieExtractor = (req) => { // eslint-disable-line
 module.exports = (passport, db) => {
     passport.use(new JWTStrategy({
         secretOrKey: process.env.JWT_SECRET,
-        issuer: `${process.env.TEAM} Football Risk`,
-        audience: process.env.JWT_DOMAIN,
         jwtFromRequest: cookieExtractor,
         passReqToCallback: true
     }, async (req, payload, done) => {

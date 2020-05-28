@@ -63,9 +63,7 @@ module.exports = (passport, db) => {
                 user.roles = roles.map((r) => r.name);
 
                 const token = jwt.sign(user, process.env.JWT_SECRET, {
-                    issuer: `${process.env.TEAM} Football Risk`,
                     subject: user.name,
-                    audience: process.env.JWT_DOMAIN
                 });
 
                 return done(null, token);
