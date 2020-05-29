@@ -11,6 +11,7 @@ services:
     links: 
       - db
     environment:
+      NODE_ENV: production # enforces https by default. set to 'development' to use http.
       DB_USER: DB_USER
       DB_PASSWORD: DB_PASSWORD
       DB_NAME: DB_NAME
