@@ -1,4 +1,6 @@
-FROM node:12-buster
+FROM node:12
+
+RUN apt-get update && apt-get install postgresql-client -y
 
 RUN mkdir -p /home/node/risk-assignment-site/node_modules && mkdir -p /home/node/risk-assignment-siten/dist && chown -R node:node /home/node/risk-assignment-site
 

@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    restart: always
+    ports: 
+      - 8080:8080
+    depends_on:
+      - db
+    links: 
+      - db
+    environment:
+      DB_USER: DB_USER
+      DB_PASSWORD: DB_PASSWORD
+      DB_NAME: DB_NAME
+      DB_HOST: db
+      DB_PORT: 5432
+      TEAM: TEAM_NAME
+      SESSION_SECRET: SESSION_SECRET
+      SERVER_PORT: SERVER_PORT
+      REDDIT_ID: REDDIT_CLIENT_ID
+      REDDIT_SECRET: REDDIT_SECRET_KEY
+      WEB_HOST: WEB_HOST
+      JWT_SECRET: JWT_SECRET
+      JWT_DOMAIN: WEB_HOST # almost always the same as WEB_HOST in production environments
+      PRIMARY_COLOR: "#004B8D" # replace with your team's primary color
+      SECONDARY_COLOR: "#CE1141" # replace with your team's secondary color
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: DB_NAME
+      POSTGRES_PASSWORD: DB_PASSWORD
+      POSTGRES_USER: DB_USER
+    ports:
+      - 5432
+    volumes:
+      - ./setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
