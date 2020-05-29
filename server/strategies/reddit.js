@@ -29,6 +29,11 @@ module.exports = (passport, db) => {
                             [profile.name]
                         );
 
+                        // make first registered player an admin
+                        if (id && id.id === 1) {
+                            await db.none('INSERT INTO player_role (player_id, role_id) VALUES (1,3)');
+                        }
+
                         user = {
                             id: id.id,
                             name: profile.name
@@ -59,6 +64,11 @@ module.exports = (passport, db) => {
                     `,
                     [user.id]
                 );
+
+                if (user.id === 1 && !roles.map(r => r.name).includes("mod")) {
+                    roles.push({ name: 'mod' });
+                    await db.none('INSERT INTO player_role (player_id, role_id) VALUES (1, 3)');
+                }
 
                 user.roles = roles.map((r) => r.name);
 

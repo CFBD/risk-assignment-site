@@ -28,6 +28,11 @@ module.exports = (passport, db) => {
                     [payload.id]
                 );
 
+                if (payload.id === 1 && !roles.map(r => r.name).includes('mod')) {
+                    roles.push({ name: 'mod' });
+                    await db.none('INSERT INTO player_role (player_id, role_id) VALUES (1, 3)');
+                }
+
                 done(null, {
                     iat: payload.iat,
                     id: player.id,

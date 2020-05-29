@@ -6,7 +6,7 @@
             <b-collapse is-nav id="nav_collapse" variant="dark">
                 <b-navbar-nav v-if='profile'>
                     <b-nav-item to="/">Home</b-nav-item>
-                    <b-nav-item v-if='profile.roles.includes("vetted")' to="/tallies">Tallies
+                    <b-nav-item v-if='profile.roles.includes("vetted") || profile.roles.includes("mod")' to="/tallies">Tallies
                     </b-nav-item>
                     <b-nav-item v-if='profile.roles.includes("mod")' to='/assignments'>
                         Assignments
