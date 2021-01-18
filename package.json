@@ -28,7 +28,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-reddit": "^0.2.4",
-    "pg-promise": "^10.5.6",
+    "pg-promise": "^10.9.1",
     "socket.io": "^2.2.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
